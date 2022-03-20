@@ -12,11 +12,20 @@ export class AppointmentService {
 
   BASE_URL = "http://localhost:8000/appointments"
 
-  getAllAppointments() {
-    return this.httpClient.get(this.BASE_URL);
+  getAllAppointments(branchId: string) {
+    return this.httpClient.get(`${this.BASE_URL}/${branchId}`);
   }
 
-  addAppointment(appointment: object) {
-
+  addAppointment(appointment: Appointment) {
+    return this.httpClient.post(this.BASE_URL, appointment);
   }
+
+  updateAppointment(appointmentId: string, update: object) {
+    return this.httpClient.put(`${this.BASE_URL}/${appointmentId}`, update);
+  }
+
+  deleteAppointment(appointmentId: string) {
+    return this.httpClient.delete(`${this.BASE_URL}/${appointmentId}`)
+  }
+
 }

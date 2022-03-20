@@ -1,4 +1,4 @@
 export class Recep {
-    constructor(public _id: string, public name: string, public email: string,public owner: object) {
+    constructor(public name: string, public email: string, public password: string, public branch: string) {
     }
 }
