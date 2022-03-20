@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
 import { Appointment } from './models/appointment';
+import { Branch } from './models/branch';
+import { Doctor } from './models/doctor';
+import { Medicine } from './models/medicine';
+import { Patient } from './models/patient';
+import { Schedule } from './models/schedule';
 import { AppointmentService } from './services/appointment.service';
+import { BranchService } from './services/branch.service';
+import { DoctorService } from './services/doctor.service';
+import { MedicineService } from './services/medicine.service';
+import { PatientService } from './services/patient.service';
+import { ServiceService } from './services/service.service';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +19,15 @@ import { AppointmentService } from './services/appointment.service';
 })
 export class AppComponent {
   title = 'cms';
-  constructor(private appointmentService: AppointmentService) {
+  constructor(private doctorService: DoctorService) {
 
   }
 
   createApp() {
-    let newApp = new Appointment("6233e0b6e9a858256052ab15", "6233e1944e40b6ef82cc4749", "2:00", "6233de2f39b0dfbb4fffdc6c", "4-12-2020", "6233e0fcc70e99ab462a8091", "cash", 150, 150)
-    this.appointmentService.deleteAppointment("623786d9d0975711d79f36ef").subscribe({
+    let newMed = new Branch("name1","location1");
+    let schedule = new Schedule("6234dbc31b50aa87de2e3509","4:00","8:00",["sun","mon"]);
+    let doc = new Doctor("Aalaa","a@aa.com","3333","6236065843757f1d3e063227",[schedule]);
+    this.doctorService.getDoctorsWithServiceId("6236065843757f1d3e063227").subscribe({
       next: (data => console.log(data)),
       error: (err => console.log(err)),
       complete: (() => console.log("completed"))

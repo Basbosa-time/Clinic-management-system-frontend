@@ -20,8 +20,8 @@ export class AppointmentService {
     return this.httpClient.post(this.BASE_URL, appointment);
   }
 
-  updateAppointment(appointmentId: string, update: object) {
-    return this.httpClient.put(`${this.BASE_URL}/${appointmentId}`, update);
+  updateAppointment(appointmentId: string, updateObject: object) {
+    return this.httpClient.put(`${this.BASE_URL}/${appointmentId}`, updateObject);
   }
 
   deleteAppointment(appointmentId: string) {
