@@ -1,0 +1,10 @@
+.card {
+  background: rgb(36, 35, 35);
+  width: 100vw;
+}
+.text-center {
+  color: aliceblue;
+}
+li {
+  text-align: center;
+}

@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="row g-0">
+        <h5 class="col-12 text-center">Services List</h5>
+    </div>
+    <p-accordion *ngFor="let service of services" [multiple]="true">
+        <p-accordionTab [header]="service.name">
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">Branches</li>
+                <li *ngFor="let branch of service.branches" class="list-group-item">You can get this service at
+                    {{branch.name | uppercase}} which is located in {{branch.location | boldText}}</li>
+            </ul>
+        </p-accordionTab>
+    </p-accordion>
+</div>

@@ -1,0 +1,24 @@
+<p-carousel [value]="medicine" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true"
+    [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+    <ng-template pTemplate="header" class="row g-0">
+        <h5 class="col-12 text-center p-3">Medicine Samples</h5>
+    </ng-template>
+    <ng-template let-medicine pTemplate="item">
+        <div class="medicine-item">
+            <div class="medicine-item-content">
+                <div class="mb-3">
+                    <img src="../../../../assets/med.jpg" [alt]="medicine.name" class="medicine-image" />
+                </div>
+                <div>
+                    <h4 class="mb-1">{{medicine.name}}</h4>
+                    <h6 class="mt-0 mb-3">{{medicine.company}}</h6>
+                    <span [class]="'product-badge status-'+medicine.quantity">{{medicine.quantity}}</span>
+                    <div class="car-buttons mt-5">
+                        <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search">
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-carousel>
