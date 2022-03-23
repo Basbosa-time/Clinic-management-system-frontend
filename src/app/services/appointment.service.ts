@@ -3,17 +3,15 @@ import { Injectable } from '@angular/core';
 import { Appointment } from '../models/appointment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppointmentService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) {
-  }
-
-  BASE_URL = "http://localhost:8000/appointments"
+  BASE_URL = 'http://localhost:8000/appointments';
 
   getAllAppointments(branchId: string) {
-    return this.httpClient.get(`${this.BASE_URL}/${branchId}`);
+    return this.httpClient.get<Array<Object>>(`${this.BASE_URL}/${branchId}`);
   }
 
   addAppointment(appointment: Appointment) {
@@ -21,11 +19,13 @@ export class AppointmentService {
   }
 
   updateAppointment(appointmentId: string, updateObject: object) {
-    return this.httpClient.put(`${this.BASE_URL}/${appointmentId}`, updateObject);
+    return this.httpClient.put(
+      `${this.BASE_URL}/${appointmentId}`,
+      updateObject
+    );
   }
 
   deleteAppointment(appointmentId: string) {
-    return this.httpClient.delete(`${this.BASE_URL}/${appointmentId}`)
+    return this.httpClient.delete(`${this.BASE_URL}/${appointmentId}`);
   }
-
 }
