@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.branchService.getAllBranches().subscribe({
-      next: (data) => (this.branches = data),
+      next: (data: any) => (this.branches = data),
       error: (err) => console.log(err),
       complete: () => console.log('branches data is completed'),
     });
