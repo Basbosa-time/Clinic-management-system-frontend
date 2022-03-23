@@ -1,0 +1,15 @@
+<app-header class="fixed-top" (showModal)="showModalDialog()"></app-header>
+<app-medicine-carousel></app-medicine-carousel>
+<app-service-list></app-service-list>
+<app-footer></app-footer>
+<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+    [resizable]="false">
+    <div class="sizes d-flex justify-content-around">
+        <input id="float-input" type="text" class="p-inputtext-lg" placeholder="Email" pInputText [(ngModel)]="email" />
+        <input id=" float-input" type="password" class="p-inputtext-lg" placeholder="Password" pInputText
+            [(ngModel)]="password" />
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="logingIn()" label="Login" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

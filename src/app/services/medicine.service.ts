@@ -8,11 +8,12 @@ import { Medicine } from '../models/medicine';
 export class MedicineService {
   constructor(private httpClient: HttpClient) { }
   BASE_URL = "http://localhost:8000/medicine";
+  getAllMedicine(){
+    return this.httpClient.get<object[]>(this.BASE_URL);
+  }
+
   addMedicine(medicine: Medicine) {
     return this.httpClient.post(this.BASE_URL,medicine);
-  }
-  getAllMedicine(){
-    return this.httpClient.get(this.BASE_URL);
   }
   getMedicine(medicineId:string){
     return this.httpClient.get(`${this.BASE_URL}/${medicineId}`);
