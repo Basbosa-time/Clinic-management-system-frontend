@@ -19,6 +19,8 @@ import { GMapModule } from 'primeng/gmap';
 import { ToastModule } from 'primeng/toast'
 import { DialogModule } from 'primeng/dialog';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +44,8 @@ import { BoldTextPipe } from './pipes/bold-text.pipe';
     GMapModule,
     ToastModule,
     DialogModule,
+    PasswordModule,
+    InputTextModule
 
   ],
   providers: [],
