@@ -26,6 +26,10 @@ import { MedicineCarouselComponent } from './components/medicine/medicine-carous
 import { ServiceListComponent } from './components/services/service-list/service-list.component';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
+import {CardModule} from 'primeng/card';
+import {ChartModule} from 'primeng/chart';
+import {DividerModule} from 'primeng/divider';
+
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
@@ -35,6 +39,8 @@ import { AddPatientComponent } from './components/patients/add-patient/add-patie
 import { EditPatientComponent } from './components/patients/edit-patient/edit-patient.component';
 import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
 import { PatientInfoComponent } from './components/patients/patient-info/patient-info.component';
+import { GenderReportComponent } from './components/reports/gender-report/gender-report.component';
+import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +57,8 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
     EditPatientComponent,
     PatientFormComponent,
     PatientInfoComponent,
+    GenderReportComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +74,8 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
     ButtonModule,
     BadgeModule,
     RippleModule,
+    DividerModule,
+    CardModule,
     InputTextModule,
     CalendarModule,
     DropdownModule,
@@ -81,6 +91,8 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
     DialogModule,
     PasswordModule,
     InputTextModule,
+    ChartModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
