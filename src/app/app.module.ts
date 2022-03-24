@@ -26,7 +26,7 @@ import { MedicineCarouselComponent } from './components/medicine/medicine-carous
 import { ServiceListComponent } from './components/services/service-list/service-list.component';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
-import {RadioButtonModule} from 'primeng/radiobutton';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
@@ -36,6 +36,9 @@ import { EditPatientComponent } from './components/patients/edit-patient/edit-pa
 import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
 import { PatientInfoComponent } from './components/patients/patient-info/patient-info.component';
 
+import { MedicineListComponent } from './components/medicine/medicine-list/medicine-list.component';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber'
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,7 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
     EditPatientComponent,
     PatientFormComponent,
     PatientInfoComponent,
+    MedicineListComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,8 +85,10 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
     DialogModule,
     PasswordModule,
     InputTextModule,
+    RatingModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
