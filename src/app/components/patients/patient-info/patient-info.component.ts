@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Patient } from 'src/app/models/patient';
 
 @Component({
   selector: 'app-patient-info',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-info.component.css']
 })
 export class PatientInfoComponent implements OnInit {
-
+  @Input() patient:Patient=new Patient("","","",[]);
   constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  displayModal:boolean=false
+  openModal(){
+    this.displayModal=true
   }
+
+
 
 }

@@ -7,12 +7,13 @@ import { PatientService } from 'src/app/services/patient.service';
 @Component({
   selector: 'app-edit-patient',
   templateUrl: './edit-patient.component.html',
-  styleUrls: ['./edit-patient.component.css']
+  styleUrls: ['./edit-patient.component.css'],
+  providers:[ConfirmationService,MessageService]
 })
 export class EditPatientComponent implements OnInit {
   @Output() loadPatients:EventEmitter<any> = new EventEmitter()
   @Input() patient: Patient = new Patient("","","",[]);
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
 
   submitted: boolean = false;
  
@@ -34,9 +35,13 @@ export class EditPatientComponent implements OnInit {
     this.patientService.updatePatient(patientObject?._id,patientObject).subscribe({
       next: data => console.log(data),
       error: err => console.log(err),
-      complete:()=>this.loadPatients.emit()
+      complete:()=>{
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 1000});
+        setTimeout(() => {
+          this.loadPatients.emit()
+        },1000 );  
+      }
     })
-
   }
   ngOnInit(): void {
   }

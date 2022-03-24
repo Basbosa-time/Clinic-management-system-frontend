@@ -1,2 +1,9 @@
-<button pButton pRipple icon="pi pi-info" class="p-button-rounded p-button-warning mx-5 text-white"
- ></button>
+<button pButton pRipple icon="pi pi-info" class="p-button-rounded p-button-warning mx-2 text-white"
+ (click)="openModal()" ></button>
+ <p-dialog header="Patient History" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+    [draggable]="false" [resizable]="false">
+    <p class="m-0">{{patient.history}}</p>
+        <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>

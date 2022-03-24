@@ -39,7 +39,7 @@
         <td>{{patient.gender}}</td>
         <td>
           <app-edit-patient [patient]="patient" (loadPatients)="reload()" ></app-edit-patient>
-          <app-patient-info ></app-patient-info>
+          <app-patient-info [patient]="patient"></app-patient-info>
         </td>
       </tr>
     </ng-template>
