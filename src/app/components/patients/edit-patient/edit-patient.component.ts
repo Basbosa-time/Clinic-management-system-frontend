@@ -34,7 +34,10 @@ export class EditPatientComponent implements OnInit {
     this.patientDialog = false;
     this.patientService.updatePatient(patientObject?._id,patientObject).subscribe({
       next: data => console.log(data),
-      error: err => console.log(err),
+      error: err => {
+        this.messageService.add({severity:'error', summary: 'Error', detail: `${err}`, life: 1000});
+        console.log(err)
+      },
       complete:()=>{
         this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 1000});
         setTimeout(() => {
