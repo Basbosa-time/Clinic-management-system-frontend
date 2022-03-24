@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { MedicineService } from 'src/app/services/medicine.service';
 import { ServiceService } from 'src/app/services/service.service';
 
-const NEW_MED = {
+const MED_OBJ = {
   name: '',
   company: '',
   description: '',
@@ -31,8 +31,8 @@ export class MedicineListComponent implements OnInit {
   selectedCategory: string = '';
   @Input() medicines: any[] = [];
   medicineRate: number = 0;
-  medicine: any = { ...NEW_MED };
-  newMedicine: any = { ...NEW_MED };
+  medicine: any = { ...MED_OBJ };
+  newMedicine: any = { ...MED_OBJ };
   selectedMedicines: any[] = [];
 
   submitted: boolean = false;
@@ -124,7 +124,6 @@ export class MedicineListComponent implements OnInit {
 
   saveMedicine() {
     this.submitted = true;
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'medicine Updated', life: 3000 });
     this.medicines.push(this.newMedicine);
     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'medicine Created', life: 3000 });
     this.newMedicineDialog = false;
@@ -140,6 +139,7 @@ export class MedicineListComponent implements OnInit {
 
   addMedicineFeedback() {
     this.updateMedicineDialog = false;
+    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'medicine Updated', life: 3000 });
     this.medicineService.addMedicineFeedback(this.medicine._id, this.medicineRate).subscribe({
       next: (data => console.log(data)),
       error: (err => console.log(err)),
