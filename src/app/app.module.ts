@@ -26,9 +26,16 @@ import { MedicineCarouselComponent } from './components/medicine/medicine-carous
 import { ServiceListComponent } from './components/services/service-list/service-list.component';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
+import {RadioButtonModule} from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
+import { PatientsListComponent } from './components/patients/patients-list/patients-list.component';
+import { AddPatientComponent } from './components/patients/add-patient/add-patient.component';
+import { EditPatientComponent } from './components/patients/edit-patient/edit-patient.component';
+import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
+import { PatientInfoComponent } from './components/patients/patient-info/patient-info.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +46,11 @@ import { PasswordModule } from 'primeng/password';
     MedicineCarouselComponent,
     ServiceListComponent,
     BoldTextPipe,
+    PatientsListComponent,
+    AddPatientComponent,
+    EditPatientComponent,
+    PatientFormComponent,
+    PatientInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +60,7 @@ import { PasswordModule } from 'primeng/password';
     TableModule,
     ToastModule,
     ToolbarModule,
+    RadioButtonModule,
     DialogModule,
     ConfirmDialogModule,
     ButtonModule,

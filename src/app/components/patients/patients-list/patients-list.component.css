@@ -1,0 +1,8 @@
+p-toolbar{
+  margin: 15px 10px 0px 10px;
+}
+p-table{
+  margin: 0px 15px;
+  border: 1px solid rgb(230, 221, 221);
+  border-radius: 5px;
+}

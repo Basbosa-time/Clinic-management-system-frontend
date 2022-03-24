@@ -1,0 +1,55 @@
+<!-- <p-toast></p-toast> -->
+
+<div class="card">
+  <p-toolbar styleClass="mb-4">
+   
+    <app-add-patient (loadPatients)="reload()"></app-add-patient>
+   
+  </p-toolbar>
+
+
+  <p-table #dt [value]="patients" [rows]="10" [paginator]="true" [globalFilterFields]="['name','status']"
+    responsiveLayout="scroll" [rowHover]="true" dataKey="_id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Image</th>
+        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th >Gender
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-patient>
+      <tr>
+        <td><img [src]="src" class="shadow-4" width="70" height="70" /></td>
+        <td>{{patient.name}}</td>
+
+        <td>{{patient.gender}}</td>
+        <td>
+          <app-edit-patient [patient]="patient" (loadPatients)="reload()" ></app-edit-patient>
+          <app-patient-info ></app-patient-info>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{patients ? patients.length : 0 }} patients.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+<!--  -->
+
