@@ -3,7 +3,7 @@
 <div class="card">
     <p-toolbar styleClass="mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mx-2"
                 (click)="openNewMedicineDialoug()"></button>
             <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedmedicines()"
                 [disabled]="!selectedMedicines || !selectedMedicines.length"></button>
@@ -17,7 +17,7 @@
     </p-toolbar>
 
     <p-table #dt [value]="medicines" [rows]="6" [paginator]="true" [globalFilterFields]="['name','company']"
-        responsiveLayout="scroll" [(selection)]="selectedMedicines" [rowHover]="true" dataKey="id"
+        responsiveLayout="scroll" [(selection)]="selectedMedicines" [rowHover]="true" dataKey="_id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
@@ -34,17 +34,17 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="name">Medicine Name <p-sortIcon field="name"></p-sortIcon>
+                <th pSortableColumn="medicine.name">Medicine Name <p-sortIcon field="name"></p-sortIcon>
                 </th>
                 <th>Image</th>
-                <th pSortableColumn="price">Company<p-sortIcon field="price"></p-sortIcon>
+                <th pSortableColumn="medicine.company">Company<p-sortIcon field="price"></p-sortIcon>
                 </th>
-                <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon>
+                <th pSortableColumn="medicine.category">Category <p-sortIcon field="category"></p-sortIcon>
                 </th>
-                <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon>
+                <th pSortableColumn="medicine.review">Review<p-sortIcon field="rating"></p-sortIcon>
                 </th>
 
-                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon>
+                <th pSortableColumn="medicine.description">Description <p-sortIcon field="description"></p-sortIcon>
                 </th>
                 <th></th>
             </tr>
@@ -64,7 +64,7 @@
                 <td>
                     {{medicine.description}}
                 <td>
-                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mx-2"
                         (click)="editmedicine(medicine)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                         (click)="deletemedicine(medicine)"></button>
@@ -93,8 +93,8 @@
         </div>
         <div class="field col-12 md:col-4">
             <label for="category">Category</label>
-            <p-dropdown [(ngModel)]="newMedicine.category" [options]="categories" id="company" optionLabel="name"
-                optionValue="_id" placeholder="Select category" [filter]="true" filterBy="name" [required]="true">
+            <p-dropdown [(ngModel)]="newMedicine.category" [options]="categories" id="category" optionLabel="name"
+                optionValue="name" placeholder="Select category" [filter]="true" filterBy="name" [required]="true">
             </p-dropdown>
         </div>
         <div class="field col-12 md:col-4">

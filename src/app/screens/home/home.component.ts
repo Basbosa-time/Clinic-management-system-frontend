@@ -9,21 +9,36 @@ export class HomeComponent implements OnInit {
   email: string = '';
   password: string = '';
   displayModal: boolean = false;
+  goToPage: string;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService) {
+    this.goToPage = '';
+  }
 
   ngOnInit(): void {
+
   }
 
   showModalDialog() {
     this.displayModal = true;
   }
 
+  routeToPatientScreenOrDoctorScreen(ref: any) {
+
+  }
+
   logingIn() {
     this.loginService.login({ email: this.email, password: this.password }).subscribe({
-      next: (data => console.log(data)),
+      next: ((data: any) => {
+        if (data.data.role == 'recep') {
+          console.log(data.data.role);
+          this.goToPage = '/recep/appointments'
+        } else if (data.data.role == 'doctor') {
+          //TODO: go to doctor page
+        }
+      }),
       error: (err => console.log(err)),
-      complete: (() => console.log("Loging in completed"))
+      complete: (() => console.log("Loging in completed", this.goToPage))
     })
     this.displayModal = false;
   }
