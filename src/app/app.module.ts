@@ -41,6 +41,7 @@ import { PatientFormComponent } from './components/patients/patient-form/patient
 import { PatientInfoComponent } from './components/patients/patient-info/patient-info.component';
 import { GenderReportComponent } from './components/reports/gender-report/gender-report.component';
 import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboard.component';
+import { InvoicesPerMonthReportComponent } from './components/reports/invoices-per-month-report/invoices-per-month-report.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboa
     PatientInfoComponent,
     GenderReportComponent,
     AdminDashboardComponent,
+    InvoicesPerMonthReportComponent,
   ],
   imports: [
     BrowserModule,
