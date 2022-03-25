@@ -1,0 +1,85 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <p-table #dt [value]="appointments" [rows]="10" [paginator]="true" responsiveLayout="scroll"
+        [(selection)]="selectedappointments" [rowHover]="true" dataKey="_id"
+        [globalFilterFields]="['patient.name','patient.gender']"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="h5">Your Schedule</span>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target?.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="patient.name">Patient Name <p-sortIcon field="patient.name"></p-sortIcon>
+                </th>
+                <th pSortableColumn="patient.gender">Gender <p-sortIcon field="patient.gender"></p-sortIcon>
+                </th>
+                <th pSortableColumn="parient.history">History <p-sortIcon field="patient.history"></p-sortIcon>
+                </th>
+                <th>Operations</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-appointment>
+            <tr>
+                <td>{{appointment.patient?.name}}</td>
+                <td>{{appointment.patient?.gender}}</td>
+                <td>
+                    <li *ngFor="let i of appointment.patient.history">
+                        {{ i }}
+                    </li>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-search" class="p-button-rounded p-button-warning"
+                        (click)="editAppointment(appointment)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{appointments ? appointments.length : 0 }} appointments.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="appointmentDialog" [style]="{width: '450px'}" header="Patient Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field col-12 md:col-4">
+            <label for="pname">Name</label>
+            <input type="text" pInputText id="pname" [(ngModel)]="appointment.patient.name" disabled />
+        </div>
+        <div class="field col-12 md:col-4">
+            <label for="gender">Gender</label>
+            <input type="text" pInputText id="gender" [(ngModel)]="appointment.patient.gender" disabled />
+        </div>
+        <div class="field col-12 md:col-4">
+            <label for="history">History</label>
+            <ul>
+                <li *ngFor="let i of appointment.patient.history">
+                    {{ i }}
+                </li>
+                <li>
+                    <div class="p-inputgroup">
+                        <input #history type="text" pInputText placeholder="Add history">
+                        <!-- <button type="button" pButton pRipple icon="pi pi-check" styleClass="p-button-warn" (click)="addHistory(history.value)"></button> -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+            (click)="saveAppointment()"></button>
+    </ng-template>
+</p-dialog>

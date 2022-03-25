@@ -29,6 +29,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
+import { DoctorAppointmentsComponent } from './components/doctors/doctor-appointments/doctor-appointments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { PasswordModule } from 'primeng/password';
     MedicineCarouselComponent,
     ServiceListComponent,
     BoldTextPipe,
+    DoctorAppointmentsComponent,
   ],
   imports: [
     BrowserModule,
