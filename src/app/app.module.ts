@@ -42,6 +42,7 @@ import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
 import { RouterModule } from '@angular/router';
+import { DoctorComponent } from './screens/doctor/doctor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,7 @@ import { RouterModule } from '@angular/router';
     PatientInfoComponent,
     MedicineListComponent,
     ReceptionistComponent,
+    DoctorComponent,
   ],
   imports: [
     BrowserModule,

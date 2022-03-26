@@ -2,9 +2,9 @@
 
 <div class="card">
   <p-toolbar styleClass="mb-4">
-   
+
     <app-add-patient (loadPatients)="reload()"></app-add-patient>
-   
+
   </p-toolbar>
 
 
@@ -26,19 +26,25 @@
         <th>Image</th>
         <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon>
         </th>
-        <th >Gender
+        <th>Gender
         </th>
         <th></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-patient>
       <tr>
-        <td><img [src]="src" class="shadow-4" width="70" height="70" /></td>
+        <td>
+          <img [src]="src+patient.image" *ngIf="patient.image; else defaultImg" class="shadow-4" width="70"
+            height="70" />
+          <ng-template #defaultImg>
+            <img [src]="defaultImgSrc" class="shadow-4" width="70" height="70" />
+          </ng-template>
+        </td>
         <td>{{patient.name}}</td>
 
         <td>{{patient.gender}}</td>
         <td>
-          <app-edit-patient [patient]="patient" (loadPatients)="reload()" ></app-edit-patient>
+          <app-edit-patient [patient]="patient" (loadPatients)="reload()"></app-edit-patient>
           <app-patient-info [patient]="patient"></app-patient-info>
         </td>
       </tr>
@@ -52,4 +58,3 @@
   </p-table>
 </div>
 <!--  -->
-
