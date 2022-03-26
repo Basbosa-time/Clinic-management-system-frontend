@@ -14,6 +14,16 @@ export class AppointmentService {
     return this.httpClient.get<Array<Object>>(`${this.BASE_URL}/${branchId}`);
   }
 
+  getDoctorAppointments(branchId: string, doctorId: string) {
+    return this.httpClient.get(
+      `${this.BASE_URL}/${branchId}/doctor/${doctorId}`
+    );
+  }
+
+  getPatientPrescs(patientId: string) {
+    return this.httpClient.get(`${this.BASE_URL}/presc/${patientId}`);
+  }
+
   addAppointment(appointment: Appointment) {
     return this.httpClient.post(this.BASE_URL, appointment);
   }

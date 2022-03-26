@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AppointmentService } from 'src/app/services/appointment.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { PatientService } from 'src/app/services/patient.service';
 
 const BRANCH_ID = '6238ad014415c709eed69de8';
+const DOCTOR_ID = '6237a90aa82cdd82342c24c8';
 
 @Component({
   selector: 'app-doctor-appointments',
@@ -21,43 +23,30 @@ const BRANCH_ID = '6238ad014415c709eed69de8';
   providers: [MessageService, ConfirmationService],
 })
 export class DoctorAppointmentsComponent implements OnInit {
-  appointmentDialog: boolean = false;
+  patientDialog: boolean = false;
 
-  appointment: any = {};
+  @Input() appointment: any = {};
 
   appointments: any[] = [];
 
-  selectedappointments: any[] = [];
-
   submitted: boolean = false;
 
-  services: any[] = [];
-
-  doctors: any[] = [];
-
-  patients: any[] = [];
-
-  disabledDays: number[] = [];
-
-  times: any[] = [];
-
-  companies: any[] = [];
-
-  selectedCompany: string = '';
-
-  discount: number = 0;
+  prescs: any[] = [];
 
   constructor(
     private messageService: MessageService,
-    private appointmentService: AppointmentService
+    private appointmentService: AppointmentService,
+    private patientService: PatientService
   ) {}
 
   getAllAppointments() {
-    this.appointmentService.getAllAppointments(BRANCH_ID).subscribe({
-      next: (res: any) => {
-        this.appointments = res.data;
-      },
-    });
+    this.appointmentService
+      .getDoctorAppointments(BRANCH_ID, DOCTOR_ID)
+      .subscribe({
+        next: (res: any) => {
+          this.appointments = res.data;
+        },
+      });
   }
 
   ngOnInit() {
@@ -66,33 +55,61 @@ export class DoctorAppointmentsComponent implements OnInit {
 
   editAppointment(appointment: any) {
     this.appointment = { ...appointment };
-    this.appointmentDialog = true;
+    this.patientDialog = true;
+    this.appointmentService
+      .getPatientPrescs(this.appointment.patient._id)
+      .subscribe({
+        next: (res: any) => {
+          this.prescs = !res.data
+            ? []
+            : res.data.map((app: any) => {
+                return { date: app.date, presc: app.presc };
+              });
+        },
+      });
   }
 
   hideDialog() {
-    this.appointmentDialog = false;
+    this.patientDialog = false;
     this.submitted = false;
   }
 
   saveAppointment() {
     this.submitted = true;
-    if (this.appointment.bookingTime) {
-      this.appointmentService
-        .updateAppointment(this.appointment._id, this.appointment)
-        .subscribe({
-          next: (res) => {
-            this.getAllAppointments();
-          },
-        });
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Successful',
-        detail: 'Appointment Updated.',
-        life: 1500,
-      });
+    this.patientService
+      .updatePatient(this.appointment.patient._id, this.appointment.patient)
+      .subscribe({
+        next: (res) => {
+          this.appointmentService
+            .updateAppointment(this.appointment._id, this.appointment)
+            .subscribe({
+              next: (res) => {
+                this.getAllAppointments();
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Successful',
+                  detail: 'Patient/Appointment Updated.',
+                  life: 1500,
+                });
 
-      this.appointmentDialog = false;
-      this.appointment = {};
+                this.patientDialog = false;
+                this.appointment = {};
+              },
+            });
+        },
+      });
+  }
+
+  addHistory(history: string, event: any) {
+    this.appointment.patient.history.push(history);
+    let { target } = event;
+    if ((target as HTMLElement).tagName != 'BUTTON') {
+      (
+        (target as HTMLElement).parentElement?.parentElement
+          ?.children[0] as HTMLInputElement
+      ).value = '';
+    } else {
+      (target.parentElement.children[0] as HTMLInputElement).value = '';
     }
   }
 }

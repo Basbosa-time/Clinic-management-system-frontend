@@ -30,6 +30,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 import { DoctorAppointmentsComponent } from './components/doctors/doctor-appointments/doctor-appointments.component';
 import { PatientsListComponent } from './components/patients/patients-list/patients-list.component';
 import { AddPatientComponent } from './components/patients/add-patient/add-patient.component';
@@ -88,6 +89,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     InputTextModule,
     RatingModule,
     InputNumberModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
