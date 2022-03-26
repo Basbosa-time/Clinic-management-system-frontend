@@ -4,3 +4,12 @@
 @import "../node_modules/primeicons/primeicons.css";
 @import "../node_modules/primeng/resources/themes/lara-light-blue/theme.css";
 @import "../node_modules/primeng/resources/primeng.min.css";
+
+p-toolbar {
+  margin: 15px 10px 0px 10px;
+}
+p-table {
+  margin: 0px 15px;
+  border: 1px solid rgb(230, 221, 221);
+  border-radius: 5px;
+}

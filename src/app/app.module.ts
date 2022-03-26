@@ -40,6 +40,8 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
 import { MedicineListComponent } from './components/medicine/medicine-list/medicine-list.component';
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     PatientFormComponent,
     PatientInfoComponent,
     MedicineListComponent,
+    ReceptionistComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     RatingModule,
     InputNumberModule,
     DividerModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
