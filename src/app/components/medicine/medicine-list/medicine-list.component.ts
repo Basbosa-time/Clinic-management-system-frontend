@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { MedicineService } from 'src/app/services/medicine.service';
@@ -12,7 +12,8 @@ const MED_OBJ = {
   category: '',
   rate: 0,
   customers: 0,
-  review: 0
+  review: 0,
+  image: ''
 }
 
 
@@ -24,6 +25,11 @@ const MED_OBJ = {
 })
 export class MedicineListComponent implements OnInit {
 
+  defaultImgSrc = '../../../../assets/defaultMed.jpg';
+
+  src = 'http://localhost:8000/images/';
+
+  @ViewChild('medicineImg', { static: false }) medicineImg: any;
   newMedicineDialog: boolean = false;
   updateMedicineDialog: boolean = false;
   services: any[] = [];
@@ -42,18 +48,7 @@ export class MedicineListComponent implements OnInit {
   constructor(private medicineService: MedicineService, private messageService: MessageService, private confirmationService: ConfirmationService, private serviceService: ServiceService) { }
 
   ngOnInit() {
-    this.medicineService.getAllMedicine().subscribe({
-      next: (data => this.medicines = data),
-      error: (err => console.log(err)),
-      complete: (() => console.log("medicine data completed"))
-    })
-
-
-    this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' }
-    ];
+    this.getAllMedicines();
   }
 
   openNew() {
@@ -71,7 +66,6 @@ export class MedicineListComponent implements OnInit {
     })
     this.newMedicineDialog = true;
   }
-
 
   deleteSelectedmedicines() {
     this.confirmationService.confirm({
@@ -128,11 +122,35 @@ export class MedicineListComponent implements OnInit {
     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'medicine Created', life: 3000 });
     this.newMedicineDialog = false;
     this.updateMedicineDialog = false;
-    this.medicineService.addMedicine(this.newMedicine).subscribe({
-      next: (data => console.log(data)),
+
+
+    let imageBlob = (this.medicineImg as ElementRef).nativeElement.files[0];
+    let medicineData = new FormData();
+    if (imageBlob) {
+      medicineData.set('img', imageBlob);
+    } else {
+      medicineData.set('img', '');
+    }
+    medicineData.append('name', this.newMedicine.name);
+    medicineData.append('_id', this.newMedicine._id);
+    medicineData.append('company', this.newMedicine.company);
+    medicineData.append('category', this.newMedicine.category);
+    medicineData.append('description', this.newMedicine.description);
+    medicineData.append('quantity', this.newMedicine.quantity);
+    medicineData.append('rate', this.newMedicine.rate);
+    medicineData.append('customers', this.newMedicine.customers);
+    medicineData.append('review', this.newMedicine.review);
+
+    this.medicineService.addMedicine(medicineData).subscribe({
+      next: (data => {
+        console.log(data);
+        this.getAllMedicines();
+      }),
       error: (err => console.log(err)),
       complete: (() => console.log("adding new medicine completed"))
     })
+
+
     this.newMedicine = {};
 
   }
@@ -145,11 +163,7 @@ export class MedicineListComponent implements OnInit {
       error: (err => console.log(err)),
       complete: (() => console.log("adding feedback completed"))
     })
-    this.medicineService.getAllMedicine().subscribe({
-      next: (data => this.medicines = data),
-      error: (err => console.log(err)),
-      complete: (() => console.log("medicine data completed"))
-    })
+    this.getAllMedicines()
 
 
   }
@@ -169,6 +183,14 @@ export class MedicineListComponent implements OnInit {
   setMedcineCategory(ref: any) {
     console.log(ref);
     this.newMedicine.category = ref;
+  }
+
+  getAllMedicines() {
+    this.medicineService.getAllMedicine().subscribe({
+      next: (data => this.medicines = data),
+      error: (err => console.log(err)),
+      complete: (() => console.log("medicine data completed"))
+    })
   }
 
 }

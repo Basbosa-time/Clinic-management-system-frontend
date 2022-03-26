@@ -12,7 +12,7 @@ export class MedicineService {
     return this.httpClient.get<object[]>(this.BASE_URL);
   }
 
-  addMedicine(medicine: Medicine) {
+  addMedicine(medicine: any) {
     return this.httpClient.post(this.BASE_URL,medicine);
   }
   getMedicine(medicineId:string){
