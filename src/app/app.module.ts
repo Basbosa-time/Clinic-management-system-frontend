@@ -26,10 +26,19 @@ import { MedicineCarouselComponent } from './components/medicine/medicine-carous
 import { ServiceListComponent } from './components/services/service-list/service-list.component';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
 import { DoctorAppointmentsComponent } from './components/doctors/doctor-appointments/doctor-appointments.component';
+import { PatientsListComponent } from './components/patients/patients-list/patients-list.component';
+import { AddPatientComponent } from './components/patients/add-patient/add-patient.component';
+import { EditPatientComponent } from './components/patients/edit-patient/edit-patient.component';
+import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
+import { PatientInfoComponent } from './components/patients/patient-info/patient-info.component';
+import { MedicineListComponent } from './components/medicine/medicine-list/medicine-list.component';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +50,12 @@ import { DoctorAppointmentsComponent } from './components/doctors/doctor-appoint
     ServiceListComponent,
     BoldTextPipe,
     DoctorAppointmentsComponent,
+    PatientsListComponent,
+    AddPatientComponent,
+    EditPatientComponent,
+    PatientFormComponent,
+    PatientInfoComponent,
+    MedicineListComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +65,7 @@ import { DoctorAppointmentsComponent } from './components/doctors/doctor-appoint
     TableModule,
     ToastModule,
     ToolbarModule,
+    RadioButtonModule,
     DialogModule,
     ConfirmDialogModule,
     ButtonModule,
@@ -70,6 +86,8 @@ import { DoctorAppointmentsComponent } from './components/doctors/doctor-appoint
     DialogModule,
     PasswordModule,
     InputTextModule,
+    RatingModule,
+    InputNumberModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

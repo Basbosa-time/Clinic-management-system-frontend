@@ -1,0 +1,35 @@
+<p-toast></p-toast>
+<p-dialog [(visible)]="patientDialog" [style]="{width: '450px'}" header="Patient Info" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" pInputText id="name" [(ngModel)]="patient.name" required autofocus />
+      <small class="p-error" *ngIf="submitted && !patient.name">Name is required.</small>
+    </div>
+    <div class="field">
+      <label for="history">History</label>
+      <textarea type="text" pInputText id="history" [(ngModel)]="patient.history" required></textarea>
+    </div>
+    <div class="field">
+      <label class="mb-3">Gender</label>
+      <div class="formgrid grid">
+        <div class="field-radiobutton col-6">
+          <p-radioButton id="gender1" name="gender" value="male" [(ngModel)]="patient.gender">
+          </p-radioButton>
+          <label for="category1">Male</label>
+        </div>
+        <div class="field-radiobutton col-6">
+          <p-radioButton id="gender2" name="gender" value="female" [(ngModel)]="patient.gender"></p-radioButton>
+          <label for="category2">Female</label>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog.emit()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePatient.emit(patient)"></button>
+  </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

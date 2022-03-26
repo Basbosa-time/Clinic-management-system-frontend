@@ -1,0 +1,159 @@
+<p-toast></p-toast>
+
+<div class="card">
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+                (click)="openNewMedicineDialoug()"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedmedicines()"
+                [disabled]="!selectedMedicines || !selectedMedicines.length"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <!-- <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+                class="mr-2 inline-block"></p-fileUpload> -->
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="medicines" [rows]="6" [paginator]="true" [globalFilterFields]="['name','company']"
+        responsiveLayout="scroll" [(selection)]="selectedMedicines" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage medicines</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="name">Medicine Name <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th>Image</th>
+                <th pSortableColumn="price">Company<p-sortIcon field="price"></p-sortIcon>
+                </th>
+                <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon>
+                </th>
+                <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon>
+                </th>
+
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-medicine>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="medicine"></p-tableCheckbox>
+                </td>
+                <td>{{medicine.name}}</td>
+                <td><img src="../../../../assets/med.jpg" [alt]="medicine.name" width="100" class="shadow-4" /></td>
+                <td>{{medicine.company | uppercase}}</td>
+                <td>{{medicine.category}}</td>
+                <td>
+                    <p-rating [ngModel]="medicine.review" [readonly]="true" [cancel]="false"></p-rating>
+                </td>
+                <td>
+                    {{medicine.description}}
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editmedicine(medicine)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deletemedicine(medicine)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{medicines ? medicines.length : 0 }} medicines.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="newMedicineDialog" [style]="{width: '450px'}" header="medicine Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field col-12 md:col-4">
+            <label for="time">Medicine name</label>
+            <input type="text" id="name" pInputText [(ngModel)]="newMedicine.name" />
+        </div>
+
+        <div class="field col-12 md:col-4">
+            <label for="total">Company</label>
+            <input type="text" id="company" pInputText [(ngModel)]="newMedicine.company" />
+        </div>
+        <div class="field col-12 md:col-4">
+            <label for="category">Category</label>
+            <p-dropdown [(ngModel)]="newMedicine.category" [options]="categories" id="company" optionLabel="name"
+                optionValue="_id" placeholder="Select category" [filter]="true" filterBy="name" [required]="true">
+            </p-dropdown>
+        </div>
+        <div class="field col-12 md:col-4">
+            <label for="net">Description</label>
+            <input type="text" id="description" pInputText [(ngModel)]="newMedicine.description" />
+        </div>
+        <div class="field col-12 md:col-3">
+            <label for="minmax-buttons">Min-Max Boundaries</label>
+            <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="100"
+                [(ngModel)]="newMedicine.quantity">
+            </p-inputNumber>
+        </div>
+
+
+    </ng-template>
+
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Add" icon="pi pi-check" class="p-button-text" (click)="saveMedicine()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="updateMedicineDialog" [style]="{width: '450px'}" header="medicine Details" [modal]="true"
+    styleClass="p-fluid">
+    <div class="field col-12 md:col-4">
+        <label for="time">Medicine name</label>
+        <input type="text" id="name" pInputText [(ngModel)]="medicine.name" disabled />
+    </div>
+
+    <div class="field col-12 md:col-4">
+        <label for="total">Company</label>
+        <input type="text" id="company" pInputText [(ngModel)]="medicine.company" disabled />
+    </div>
+    <div class="field col-12 md:col-4">
+        <label for="total">Category</label>
+        <input type="text" id="category" pInputText [(ngModel)]="medicine.category" disabled />
+    </div>
+    <div class="field col-12 md:col-4">
+        <label for="net">Description</label>
+        <input type="text" id="description" pInputText [(ngModel)]="medicine.description" disabled />
+    </div>
+    <div class="field col-12 md:col-3">
+        <label for="net">Quantity</label>
+        <input type="text" id="quantity" pInputText [(ngModel)]=" medicine.quantity" disabled />
+    </div>
+    <div class="field col-12 md:col-3">
+        <label for="net">Quantity</label>
+        <input type="text" id="quantity" pInputText [(ngModel)]=" medicine.quantity" disabled />
+    </div>
+    <div class="field col-12 md:col-3">
+        <label for="rating">Add Rating</label>
+        <p-rating name="rating" [(ngModel)]="medicineRate" [cancel]="false"></p-rating>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+            (click)="addMedicineFeedback()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
