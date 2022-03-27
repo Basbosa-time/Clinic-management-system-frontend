@@ -29,6 +29,7 @@ import { SplitterModule } from 'primeng/splitter';
 import {CardModule} from 'primeng/card';
 import {ChartModule} from 'primeng/chart';
 import {DividerModule} from 'primeng/divider';
+import {StyleClassModule} from 'primeng/styleclass';
 
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
@@ -42,6 +43,7 @@ import { PatientInfoComponent } from './components/patients/patient-info/patient
 import { GenderReportComponent } from './components/reports/gender-report/gender-report.component';
 import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboard.component';
 import { InvoicesPerMonthReportComponent } from './components/reports/invoices-per-month-report/invoices-per-month-report.component';
+import { ReportTileComponent } from './components/reports/report-tile/report-tile.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { InvoicesPerMonthReportComponent } from './components/reports/invoices-p
     GenderReportComponent,
     AdminDashboardComponent,
     InvoicesPerMonthReportComponent,
+    ReportTileComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +96,7 @@ import { InvoicesPerMonthReportComponent } from './components/reports/invoices-p
     DialogModule,
     PasswordModule,
     InputTextModule,
+    StyleClassModule,
     ChartModule
     
   ],

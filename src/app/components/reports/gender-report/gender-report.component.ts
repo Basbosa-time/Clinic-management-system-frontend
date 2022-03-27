@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-gender-report',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenderReportComponent implements OnInit {
 
-  constructor() { }
+  constructor(private reportService:ReportService) { }
   data: any;
-
+  genderSummary:any
   chartOptions: any;
 
   config = {
@@ -19,52 +20,34 @@ export class GenderReportComponent implements OnInit {
     ripple: true
   };
   ngOnInit() {
-    this.data = {
-      labels: ['Male', 'Female'],
-      datasets: [
-        {
-          data: [300, 300],
-          backgroundColor: [
-            "#42A5F5",
-            '#F31B89'
-            
-          ],
-          hoverBackgroundColor: [
-            "#64B5F6",
-            '#F54BA1',
+    
+    this.reportService.getGenderSummary().subscribe({
+      next:(data)=>{
+        this.genderSummary=data
+        console.log(data,this.genderSummary);
+      } ,
+      error:(err)=>console.log(err),
+      complete:()=>{
+        this.data = {
+          labels: ['Male', 'Female'],
+          datasets: [
+            {
+              data: [this.genderSummary?.male,this.genderSummary?.female],
+              backgroundColor: [
+                "#42A5F5",
+                '#F31B89'
+                
+              ],
+              hoverBackgroundColor: [
+                "#64B5F6",
+                '#F54BA1',
+              ]
+            }
           ]
-        }
-      ]
-    };
-    this.updateChartOptions();
-
-  }
-  getLightTheme() {
-    return {
-      plugins: {
-        legend: {
-          labels: {
-            color: '#495057'
-          }
-        }
+        };
       }
-    }
+    })
+ 
+   
   }
-
-  getDarkTheme() {
-    return {
-      plugins: {
-        legend: {
-          labels: {
-            color: '#ebedef'
-          }
-        }
-      }
-    }
-  }
-  updateChartOptions() {
-    this.chartOptions = this.config && this.config.dark ? this.getDarkTheme() : this.getLightTheme();
-  }
-
-
 }

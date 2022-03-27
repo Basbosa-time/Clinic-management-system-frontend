@@ -1,2 +1,24 @@
-<app-gender-report></app-gender-report>
-<app-invoices-per-month-report></app-invoices-per-month-report>
+<div class="mainWrapper">
+  <div class="chartsSection">
+    <app-gender-report class="gender"></app-gender-report>
+    <!-- reportTileSection -->
+    <div class=" row g-0 justify-content-evenly">
+      <div
+        style="background-size: cover; background-image:url(https://cdn2.vectorstock.com/i/1000x1000/48/46/online-bill-payment-banking-internet-vector-29514846.jpg)"
+        class="col-lg-5 bg-white shadow-sm  rounded-4 col-12 mb-lg-0 mb-2 ">
+        <app-report-tile></app-report-tile>
+      </div>
+      
+      <div
+        style="background-image: url(https://t4.ftcdn.net/jpg/02/60/79/69/360_F_260796901_OjLZ8So4fB09tlaVXQA4pcB5Ta8fer9t.jpg); background-size: cover;"
+        class="col-lg-5 bg-white shadow-sm  rounded-3 col-12 mb-2  ">
+        <app-report-tile></app-report-tile>
+      </div>
+    </div>
+  </div>
+  <div class="invoicesSummary">
+
+    <app-invoices-per-month-report class="invoice"></app-invoices-per-month-report>
+
+  </div>
+</div>
