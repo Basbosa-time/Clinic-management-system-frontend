@@ -6,6 +6,9 @@ import { MedicineListComponent } from './components/medicine/medicine-list/medic
 import { HomeComponent } from './screens/home/home.component';
 import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
 import { DoctorComponent } from './screens/doctor/doctor.component';
+import { AuthGuard } from './guards/auth.guard';
+import { DoctorGuard } from './guards/doctor.guard';
+import { RecepGuard } from './guards/recep.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // default route start home page
   { path: 'home', component: HomeComponent },
@@ -17,10 +20,12 @@ const routes: Routes = [
       { path: 'patients', component: PatientsListComponent },
       { path: 'medicine', component: MedicineListComponent },
     ],
+    canActivate: [AuthGuard, RecepGuard],
   },
   {
     path: 'doctor',
     component: DoctorComponent,
+    canActivate: [AuthGuard, DoctorGuard],
   },
 ];
 
