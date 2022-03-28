@@ -26,25 +26,39 @@ import { MedicineCarouselComponent } from './components/medicine/medicine-carous
 import { ServiceListComponent } from './components/services/service-list/service-list.component';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
-import { RadioButtonModule } from 'primeng/radiobutton';
+import {CardModule} from 'primeng/card';
+import {ChartModule} from 'primeng/chart';
+import {DividerModule} from 'primeng/divider';
+import {StyleClassModule} from 'primeng/styleclass';
+
+import {RadioButtonModule} from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
-import { DividerModule } from 'primeng/divider';
 import { DoctorAppointmentsComponent } from './components/doctors/doctor-appointments/doctor-appointments.component';
 import { PatientsListComponent } from './components/patients/patients-list/patients-list.component';
 import { AddPatientComponent } from './components/patients/add-patient/add-patient.component';
 import { EditPatientComponent } from './components/patients/edit-patient/edit-patient.component';
 import { PatientFormComponent } from './components/patients/patient-form/patient-form.component';
 import { PatientInfoComponent } from './components/patients/patient-info/patient-info.component';
+import { GenderReportComponent } from './components/reports/gender-report/gender-report.component';
+import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboard.component';
+import { InvoicesPerMonthReportComponent } from './components/reports/invoices-per-month-report/invoices-per-month-report.component';
+import { ReportTileComponent } from './components/reports/report-tile/report-tile.component';
+
 import { MedicineListComponent } from './components/medicine/medicine-list/medicine-list.component';
 import { RatingModule } from 'primeng/rating';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
 import { RouterModule } from '@angular/router';
 import { DoctorComponent } from './screens/doctor/doctor.component';
+<<<<<<< HEAD
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenAuthInterceptor } from './interceptors/token-auth.interceptor';
+=======
+import { InvoiceListComponent } from './components/invoices/invoice-list/invoice-list.component';
+import { AppointmentReportComponent } from './components/appointments/appointment-report/appointment-report.component';
+>>>>>>> aalaa
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,9 +75,15 @@ import { TokenAuthInterceptor } from './interceptors/token-auth.interceptor';
     EditPatientComponent,
     PatientFormComponent,
     PatientInfoComponent,
+    GenderReportComponent,
+    AdminDashboardComponent,
+    InvoicesPerMonthReportComponent,
+    ReportTileComponent,
     MedicineListComponent,
     ReceptionistComponent,
     DoctorComponent,
+    InvoiceListComponent,
+    AppointmentReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +99,8 @@ import { TokenAuthInterceptor } from './interceptors/token-auth.interceptor';
     ButtonModule,
     BadgeModule,
     RippleModule,
+    DividerModule,
+    CardModule,
     InputTextModule,
     CalendarModule,
     DropdownModule,
@@ -94,6 +116,8 @@ import { TokenAuthInterceptor } from './interceptors/token-auth.interceptor';
     DialogModule,
     PasswordModule,
     InputTextModule,
+    StyleClassModule,
+    ChartModule,
     RatingModule,
     InputNumberModule,
     DividerModule,

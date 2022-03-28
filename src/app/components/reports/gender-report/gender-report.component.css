@@ -1,0 +1,9 @@
+:host ::ng-deep .p-card	{
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 39px 0px 59px -10px rgba(0,0,0,0.1); 
+  width: 25vw;
+  min-width: 310px;
+  max-width: 450px;
+  margin-right: 1rem;
+}
