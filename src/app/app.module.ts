@@ -35,6 +35,7 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
+import { DoctorAppointmentsComponent } from './components/doctors/doctor-appointments/doctor-appointments.component';
 import { PatientsListComponent } from './components/patients/patients-list/patients-list.component';
 import { AddPatientComponent } from './components/patients/add-patient/add-patient.component';
 import { EditPatientComponent } from './components/patients/edit-patient/edit-patient.component';
@@ -45,6 +46,14 @@ import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboa
 import { InvoicesPerMonthReportComponent } from './components/reports/invoices-per-month-report/invoices-per-month-report.component';
 import { ReportTileComponent } from './components/reports/report-tile/report-tile.component';
 
+import { MedicineListComponent } from './components/medicine/medicine-list/medicine-list.component';
+import { RatingModule } from 'primeng/rating';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
+import { RouterModule } from '@angular/router';
+import { DoctorComponent } from './screens/doctor/doctor.component';
+import { InvoiceListComponent } from './components/invoices/invoice-list/invoice-list.component';
+import { AppointmentReportComponent } from './components/appointments/appointment-report/appointment-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +64,7 @@ import { ReportTileComponent } from './components/reports/report-tile/report-til
     MedicineCarouselComponent,
     ServiceListComponent,
     BoldTextPipe,
+    DoctorAppointmentsComponent,
     PatientsListComponent,
     AddPatientComponent,
     EditPatientComponent,
@@ -64,6 +74,11 @@ import { ReportTileComponent } from './components/reports/report-tile/report-til
     AdminDashboardComponent,
     InvoicesPerMonthReportComponent,
     ReportTileComponent,
+    MedicineListComponent,
+    ReceptionistComponent,
+    DoctorComponent,
+    InvoiceListComponent,
+    AppointmentReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,8 +112,11 @@ import { ReportTileComponent } from './components/reports/report-tile/report-til
     PasswordModule,
     InputTextModule,
     StyleClassModule,
-    ChartModule
-    
+    ChartModule,
+    RatingModule,
+    InputNumberModule,
+    DividerModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

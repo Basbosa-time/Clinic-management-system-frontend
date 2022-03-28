@@ -2,7 +2,14 @@
 <p-dialog [(visible)]="patientDialog" [style]="{width: '450px'}" header="Patient Info" [modal]="true"
   styleClass="p-fluid">
   <ng-template pTemplate="content">
-
+    <div class="d-flex justify-content-center align-items-center">
+      <img style="width: 100px; height: 100px; border-radius: 25px;" [src]="src+patient.image"
+        *ngIf="patient.image; else defaultImg" class="shadow-4" width="70" height="70" />
+      <ng-template #defaultImg>
+        <img style="width: 100px; height: 100px; border-radius: 25px;" [src]="defaultImgSrc" class="shadow-4" width="70"
+          height="70" />
+      </ng-template>
+    </div>
     <div class="field">
       <label for="name">Name</label>
       <input type="text" pInputText id="name" [(ngModel)]="patient.name" required autofocus />
@@ -10,7 +17,19 @@
     </div>
     <div class="field">
       <label for="history">History</label>
-      <textarea type="text" pInputText id="history" [(ngModel)]="patient.history" required></textarea>
+      <!-- <textarea type="text" pInputText id="history" [(ngModel)]="patient.history" required></textarea> -->
+      <ul>
+        <li *ngFor="let history of patient.history">
+          {{history}}
+        </li>
+        <li>
+          <div class="p-inputgroup">
+            <input #history type="text" pInputText placeholder="Add history">
+            <button type="button" pButton pRipple icon="pi pi-check" styleClass="p-button-warn"
+              (click)="addHistory(history.value, $event)"></button>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="field">
       <label class="mb-3">Gender</label>
@@ -24,12 +43,17 @@
           <p-radioButton id="gender2" name="gender" value="female" [(ngModel)]="patient.gender"></p-radioButton>
           <label for="category2">Female</label>
         </div>
+        <div class="field mb-3">
+          <label class="form-label" for="img">Image</label>
+          <input class="form-control" type="file" id="patientImg" #patientImg required />
+        </div>
       </div>
     </div>
   </ng-template>
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog.emit()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePatient.emit(patient)"></button>
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+      (click)="hideDialog.emit()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save(patient)"></button>
   </ng-template>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -145,16 +145,6 @@ export class AppointmentsListComponent implements OnInit {
     return true;
   }
 
-  // onSelectBookingTime(time: string) {
-  //   let hour = new Date(time).getHours();
-  //   let min = new Date(time).getMinutes();
-  //   if (min < 10) {
-  //     this.appointment.bookingTime = `${hour}:0${min}`;
-  //   } else {
-  //     this.appointment.bookingTime = `${hour}:${min}`;
-  //   }
-  // }
-
   editAppointment(appointment: any) {
     this.appointment = { ...appointment };
     this.appointmentDialog = true;
@@ -240,17 +230,17 @@ export class AppointmentsListComponent implements OnInit {
         .subscribe({
           next: (res) => {
             this.getAllAppointments();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Appointment Updated.',
+              life: 1500,
+            });
+
+            this.appointmentDialog = false;
+            this.appointment = {};
           },
         });
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Successful',
-        detail: 'Appointment Updated.',
-        life: 1500,
-      });
-
-      this.appointmentDialog = false;
-      this.appointment = {};
     }
   }
 
@@ -268,18 +258,15 @@ export class AppointmentsListComponent implements OnInit {
           if (this.selectedCompany != '') {
             this.insuranceCompanyService
               .addExpenses(this.selectedCompany, { amount: this.discount })
-              .subscribe({
-                next: (res) => {
-                  this.getAllAppointments();
-                  this.messageService.add({
-                    severity: 'success',
-                    summary: 'Successful',
-                    detail: 'Appointment Added',
-                    life: 1500,
-                  });
-                },
-              });
+              .subscribe();
           }
+          this.getAllAppointments();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Appointment Added',
+            life: 1500,
+          });
         },
       });
       this.appointmentAddDialog = false;
@@ -314,14 +301,16 @@ export class AppointmentsListComponent implements OnInit {
     };
     let doc = this.doctors.filter((v) => v._id == docId)[0];
     let sched = doc.owner.schedule.filter((v: any) => v.branch == BRANCH_ID);
-    this.newAppointment.bookingTime = sched[0].startTime;
-    let days = sched.map((v: any) => v.days);
-    days[0].forEach((v: any) => {
-      schedays.push(week[v]);
-    });
-    schedays.forEach((v) => {
-      alldays.splice(alldays.indexOf(v), 1);
-    });
+    if (sched.length != 0) {
+      this.newAppointment.bookingTime = sched[0].startTime;
+      let days = sched.map((v: any) => v.days);
+      days[0].forEach((v: any) => {
+        schedays.push(week[v]);
+      });
+      schedays.forEach((v) => {
+        alldays.splice(alldays.indexOf(v), 1);
+      });
+    }
     this.disabledDays = alldays;
   }
 

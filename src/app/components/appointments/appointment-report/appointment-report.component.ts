@@ -1,25 +1,20 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Patient } from 'src/app/models/patient';
-import { PatientService } from 'src/app/services/patient.service';
-import { ConfirmationService } from 'primeng/api';
-import { MessageService } from 'primeng/api';
+import { Component, OnInit } from '@angular/core';
+import { ReportService } from 'src/app/services/report.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
-  selector: 'app-patients-list',
-  templateUrl: './patients-list.component.html',
-  styleUrls: ['./patients-list.component.css'],
-  providers: [MessageService, ConfirmationService],
+  selector: 'app-appointment-report',
+  templateUrl: './appointment-report.component.html',
+  styleUrls: ['./appointment-report.component.css']
 })
-export class PatientsListComponent implements OnChanges, OnInit {
+export class AppointmentReportComponent implements OnInit {
+
   constructor(
-    private patientService: PatientService,
+    private reportService: ReportService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
-  patients: any = [];
+  invoices: any = [];
   isChanged: boolean = false;
   ngOnInit(): void {
     this.getPatients();
@@ -33,11 +28,11 @@ export class PatientsListComponent implements OnChanges, OnInit {
   openNew() {}
 
   getPatients() {
-    console.log('load patients');
-    this.patientService.getAllPatients().subscribe({
+    console.log('load invoices');
+    this.reportService.getAppointmentReport().subscribe({
       next: (data) => {
         console.log(data);
-        this.patients = data;
+        this.invoices = data;
       },
       error: (err) => console.log(err),
       complete: () => console.log('medicine data completed'),
@@ -52,4 +47,5 @@ export class PatientsListComponent implements OnChanges, OnInit {
     });
     this.getPatients();
   }
+
 }

@@ -11,7 +11,7 @@
         </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="appointments" [rows]="10" [paginator]="true" responsiveLayout="scroll"
+    <p-table #dt [value]="appointments" [rows]="6" [paginator]="true" responsiveLayout="scroll"
         [(selection)]="selectedappointments" [rowHover]="true" dataKey="_id"
         [globalFilterFields]="['patient.name','doctor.name','doctor.owner.specialization.name']"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -98,8 +98,6 @@
 
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-            (click)="saveAppointment()"></button>
     </ng-template>
 </p-dialog>
 

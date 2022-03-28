@@ -1,0 +1,55 @@
+<!-- <p-toast></p-toast> -->
+
+<div class="card">
+  <p-table #dt [value]="invoices" [rows]="10" [paginator]="true"
+    [globalFilterFields]="['branch?.name','doctor?.name','patient?.name','date','bookingTime','arrivalTime']"
+    responsiveLayout="scroll" [rowHover]="true" dataKey="_id"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="h5">Appointment Report</span>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target?.value, 'contains')"
+            placeholder="Search..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="bracnh?.name">Branch <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="doctor?.name">Doctor<p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="patient?.name">Patient<p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="date">Date<p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bookingTime">Booking Time<p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="arrivalTime">Arrival Time<p-sortIcon field="name"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-invoice>
+      <tr>
+        <td>
+          {{invoice.branch?.name}}
+        </td>
+        <td>{{invoice.doctor?.name}}</td>
+
+        <td>{{invoice.patient?.name}}</td>
+        <td>{{invoice.date}}</td>
+        <td>{{invoice.bookingTime}}</td>
+        <td>{{invoice.arrivalTime}}</td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{invoices ? invoices.length : 0 }} invoices.
+      </div>
+    </ng-template>
+  </p-table>
+</div>
+<!--  -->

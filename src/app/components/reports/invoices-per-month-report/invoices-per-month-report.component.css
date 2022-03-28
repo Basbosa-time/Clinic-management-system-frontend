@@ -1,9 +1,9 @@
 :host ::ng-deep .p-card	{
   height: auto;
-  width: 87vw;
+  width: 97vw;
   box-sizing: border-box;
   background-color: white;  
   border-radius: 10px;
-  box-shadow: 39px 0px 59px -10px rgba(0,0,0,0.1);
+  box-shadow: 39px 0px 59px -10px rgba(0,0,0,0.1); 
 
 }

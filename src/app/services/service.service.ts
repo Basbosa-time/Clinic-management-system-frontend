@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ServiceService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
   BASE_URL = 'http://localhost:8000/services';
   getAllServices() {
-    return this.httpClient.get(this.BASE_URL);
+    return this.httpClient.get<any[]>(this.BASE_URL);
   }
   getServicesWithBranchId(branchId: string) {
     return this.httpClient.get(`${this.BASE_URL}/branches/${branchId}`);
