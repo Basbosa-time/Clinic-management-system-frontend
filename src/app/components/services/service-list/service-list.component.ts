@@ -8,13 +8,12 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class ServiceListComponent implements OnInit {
   services: any[] = [];
-  constructor(private serviceService: ServiceService) {}
+  constructor(private serviceService: ServiceService) { }
 
   ngOnInit(): void {
     this.serviceService.getAllServices().subscribe({
       next: (data: any) => (this.services = data),
       error: (err) => console.log(err),
-      complete: () => console.log('service data completed'),
     });
   }
 }

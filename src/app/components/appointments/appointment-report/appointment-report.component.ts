@@ -13,7 +13,7 @@ export class AppointmentReportComponent implements OnInit {
     private reportService: ReportService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   invoices: any = [];
   isChanged: boolean = false;
   ngOnInit(): void {
@@ -25,17 +25,14 @@ export class AppointmentReportComponent implements OnInit {
   defaultImgSrc = '../../../../assets/defaultUser.jpg';
 
   src = 'http://localhost:8000/images/';
-  openNew() {}
+  openNew() { }
 
   getPatients() {
-    console.log('load invoices');
     this.reportService.getAppointmentReport().subscribe({
       next: (data) => {
-        console.log(data);
         this.invoices = data;
       },
       error: (err) => console.log(err),
-      complete: () => console.log('medicine data completed'),
     });
   }
   reload() {

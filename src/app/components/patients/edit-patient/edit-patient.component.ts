@@ -17,7 +17,7 @@ export class EditPatientComponent implements OnInit {
     private patientService: PatientService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) { }
 
   submitted: boolean = false;
 
@@ -33,12 +33,11 @@ export class EditPatientComponent implements OnInit {
   }
   editPatient(patientObject: any) {
     this.submitted = true;
-    console.log('saved');
     this.patientDialog = false;
     this.patientService
       .updatePatient(patientObject.get('_id'), patientObject)
       .subscribe({
-        next: (data) => console.log(data),
+        next: (data) => { },
         error: (err) => {
           this.messageService.add({
             severity: 'error',
@@ -61,5 +60,5 @@ export class EditPatientComponent implements OnInit {
         },
       });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
