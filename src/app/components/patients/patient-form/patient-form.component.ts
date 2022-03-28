@@ -38,9 +38,9 @@ export class PatientFormComponent implements OnInit {
     } else {
       patientData.set('img', '');
     }
-    patientData.append('name', patient.name);
-    patientData.append('_id', patient._id);
-    patientData.append('gender', patient.gender);
+    Object.entries(this.patient).forEach((entry: any) => {
+      if (entry[0] != 'history') patientData.append(entry[0], entry[1]);
+    });
     patient.history.forEach((value: any, index: number) => {
       patientData.append(`history[${index}]`, value);
     });

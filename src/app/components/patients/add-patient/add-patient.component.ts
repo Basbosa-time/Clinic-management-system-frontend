@@ -25,7 +25,6 @@ export class AddPatientComponent implements OnInit {
   openNew() {
     this.submitted = false;
     this.patientDialog = true;
-    console.log('ahaha');
   }
   hideDialog() {
     this.patientDialog = false;

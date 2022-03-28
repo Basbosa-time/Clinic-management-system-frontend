@@ -43,6 +43,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
 import { RouterModule } from '@angular/router';
 import { DoctorComponent } from './screens/doctor/doctor.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenAuthInterceptor } from './interceptors/token-auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,7 +99,13 @@ import { DoctorComponent } from './screens/doctor/doctor.component';
     DividerModule,
     RouterModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenAuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

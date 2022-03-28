@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
       .login({ email: this.email, password: this.password })
       .subscribe({
         next: (data: any) => {
+          localStorage.setItem('userToken', data.accessToken);
           if (data.data.role == 'recep') {
             console.log(data.data.role);
             this.goToPage = '/recep/appointments';
