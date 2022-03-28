@@ -15,13 +15,11 @@ export class HomeComponent implements OnInit {
     this.goToPage = '';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   showModalDialog() {
     this.displayModal = true;
   }
-
-  routeToPatientScreenOrDoctorScreen(ref: any) {}
 
   logingIn() {
     this.loginService
@@ -30,7 +28,6 @@ export class HomeComponent implements OnInit {
         next: (data: any) => {
           localStorage.setItem('userToken', data.accessToken);
           if (data.data.role == 'recep') {
-            console.log(data.data.role);
             this.goToPage = '/recep/appointments';
           } else if (data.data.role == 'doctor') {
             this.goToPage = '/doctor';
