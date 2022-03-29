@@ -15,9 +15,8 @@ export class PatientsListComponent implements OnChanges, OnInit {
     private patientService: PatientService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
   patients: any = [];
   isChanged: boolean = false;
@@ -30,21 +29,17 @@ export class PatientsListComponent implements OnChanges, OnInit {
   defaultImgSrc = '../../../../assets/defaultUser.jpg';
 
   src = 'http://localhost:8000/images/';
-  openNew() {}
+  openNew() { }
 
   getPatients() {
-    console.log('load patients');
     this.patientService.getAllPatients().subscribe({
       next: (data) => {
-        console.log(data);
         this.patients = data;
       },
       error: (err) => console.log(err),
-      complete: () => console.log('medicine data completed'),
     });
   }
   reload() {
-    console.log('reload');
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['./'], {

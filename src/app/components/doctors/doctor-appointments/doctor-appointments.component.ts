@@ -4,8 +4,8 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { PatientService } from 'src/app/services/patient.service';
 
-const BRANCH_ID = '6238ad014415c709eed69de8';
-const DOCTOR_ID = '6237a90aa82cdd82342c24c8';
+const BRANCH_ID = '62407610c65ddd91c926395e';
+const DOCTOR_ID = '624077935e190509c2c656c8';
 
 @Component({
   selector: 'app-doctor-appointments',

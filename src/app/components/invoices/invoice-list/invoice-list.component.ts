@@ -13,9 +13,8 @@ import { ReportService } from 'src/app/services/report.service';
 export class InvoiceListComponent implements OnChanges, OnInit {
   constructor(
     private reportService: ReportService,
-  ) {}
+  ) { }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
   invoices: any = [];
   isChanged: boolean = false;
@@ -28,13 +27,11 @@ export class InvoiceListComponent implements OnChanges, OnInit {
   defaultImgSrc = '../../../../assets/defaultUser.jpg';
 
   src = 'http://localhost:8000/images/';
-  openNew() {}
+  openNew() { }
 
   getInvoices() {
-    console.log('load invoices');
     this.reportService.getInvoicesReport().subscribe({
       next: (data) => {
-        console.log(data);
         this.invoices = data;
       },
       error: (err) => console.log(err),

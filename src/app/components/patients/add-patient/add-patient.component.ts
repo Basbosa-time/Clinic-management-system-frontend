@@ -15,7 +15,7 @@ export class AddPatientComponent implements OnInit {
     private patientService: PatientService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) {}
+  ) { }
   submitted: boolean = false;
   patient: Patient = new Patient('', '', '', []);
   patientData: FormData = new FormData();
@@ -25,18 +25,16 @@ export class AddPatientComponent implements OnInit {
   openNew() {
     this.submitted = false;
     this.patientDialog = true;
-    console.log('ahaha');
   }
   hideDialog() {
     this.patientDialog = false;
   }
   savePatient(patientObj: Object) {
     this.submitted = true;
-    console.log('saved');
     this.patientDialog = false;
 
     this.patientService.addPatient(patientObj).subscribe({
-      next: (data) => console.log(data),
+      next: (data) => { },
       error: (err) => {
         console.log(err);
         this.messageService.add({
@@ -60,5 +58,5 @@ export class AddPatientComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

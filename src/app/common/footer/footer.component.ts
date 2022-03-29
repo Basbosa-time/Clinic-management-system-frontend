@@ -20,12 +20,10 @@ export class FooterComponent implements OnInit {
     this.branchService.getAllBranches().subscribe({
       next: (data: any) => (this.branches = data),
       error: (err) => console.log(err),
-      complete: () => console.log('branches data is completed'),
     });
     this.doctorService.getAllDoctors().subscribe({
       next: (data: any) => (this.doctors = data),
       error: (err) => console.log(err),
-      complete: () => console.log('doctors data is completed'),
     });
   }
 }

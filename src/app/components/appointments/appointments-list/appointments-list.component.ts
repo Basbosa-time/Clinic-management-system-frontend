@@ -7,8 +7,8 @@ import { ServiceService } from 'src/app/services/service.service';
 import { PatientService } from 'src/app/services/patient.service';
 import { InsuranceCompanyService } from 'src/app/services/insurance-company.service';
 
-const BRANCH_ID = '6238ad014415c709eed69de8';
-const RECEP_ID = '623652be20d6d1a112795408';
+const BRANCH_ID = '62407610c65ddd91c926395e';
+const RECEP_ID = '624076d65e190509c2c656ac';
 const NEW_APP = {
   doctor: '',
   patient: '',

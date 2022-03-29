@@ -14,7 +14,7 @@
             [(ngModel)]="password" />
     </div>
     <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" [routerLink]="[goToPage]" (click)="logingIn()" label="Login"
+        <p-button icon="pi pi-check" [routerLink]="goToPage" (click)="logingIn()" label="Login"
             styleClass="p-button-text">
         </p-button>
     </ng-template>

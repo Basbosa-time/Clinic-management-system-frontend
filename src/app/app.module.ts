@@ -26,12 +26,12 @@ import { MedicineCarouselComponent } from './components/medicine/medicine-carous
 import { ServiceListComponent } from './components/services/service-list/service-list.component';
 import { AccordionModule } from 'primeng/accordion';
 import { SplitterModule } from 'primeng/splitter';
-import {CardModule} from 'primeng/card';
-import {ChartModule} from 'primeng/chart';
-import {DividerModule} from 'primeng/divider';
-import {StyleClassModule} from 'primeng/styleclass';
+import { CardModule } from 'primeng/card';
+import { ChartModule } from 'primeng/chart';
+import { DividerModule } from 'primeng/divider';
+import { StyleClassModule } from 'primeng/styleclass';
 
-import {RadioButtonModule} from 'primeng/radiobutton';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { GMapModule } from 'primeng/gmap';
 import { BoldTextPipe } from './pipes/bold-text.pipe';
 import { PasswordModule } from 'primeng/password';
@@ -52,6 +52,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ReceptionistComponent } from './screens/receptionist/receptionist.component';
 import { RouterModule } from '@angular/router';
 import { DoctorComponent } from './screens/doctor/doctor.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenAuthInterceptor } from './interceptors/token-auth.interceptor';
 import { InvoiceListComponent } from './components/invoices/invoice-list/invoice-list.component';
 import { AppointmentReportComponent } from './components/appointments/appointment-report/appointment-report.component';
 @NgModule({
@@ -118,7 +120,13 @@ import { AppointmentReportComponent } from './components/appointments/appointmen
     DividerModule,
     RouterModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenAuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
