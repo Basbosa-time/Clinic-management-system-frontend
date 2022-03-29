@@ -11,8 +11,8 @@
   <div class="card-body row  justify-content-between">
     <h5 class="card-text col-8">
       {{title}} Report
-      <!-- Detailed Invoices -->
     </h5>
-    <a [routerLink]="[goto]" class="btn btn-primary col-4 mx-3" style="width:100px; height: 40px">Report</a>
+    <a routerLinkActive="active" (click)="handleNavigation()"  class="btn btn-primary col-4 mx-3" style="width:100px; height: 40px">Report</a>
+  
   </div>
 </div>

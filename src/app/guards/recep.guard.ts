@@ -15,7 +15,7 @@ import { AuthService } from '../services/auth.service';
 export class RecepGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate() {
-    if (this.authService.isRecep()) {
+    if (this.authService.isRecep() || this.authService.isAdmin()) {
       return true;
     } else {
       this.router.navigate(['doctor']);

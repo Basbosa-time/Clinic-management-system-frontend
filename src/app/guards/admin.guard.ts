@@ -12,13 +12,14 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class DoctorGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
+
   canActivate() {
-    if (this.authService.isDoctor() || this.authService.isAdmin()) {
-      return true;
-    } else {
-      this.router.navigate(['recep/appointments']);
+    if (this.authService.isAdmin()) return true;
+    else {
+      if (this.authService.isDoctor()) this.router.navigate(['doctor']);
+      else this.router.navigate(['recep/appointments']);
       return false;
     }
   }

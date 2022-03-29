@@ -9,9 +9,10 @@ import { DoctorComponent } from './screens/doctor/doctor.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DoctorGuard } from './guards/doctor.guard';
 import { RecepGuard } from './guards/recep.guard';
-import {AdminDashboardComponent} from './screens/admin-dashboard/admin-dashboard.component';
-import {AppointmentReportComponent} from './components/appointments/appointment-report/appointment-report.component';
-import {InvoiceListComponent} from './components/invoices/invoice-list/invoice-list.component';
+import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboard.component';
+import { AppointmentReportComponent } from './components/appointments/appointment-report/appointment-report.component';
+import { InvoiceListComponent } from './components/invoices/invoice-list/invoice-list.component';
+import { AdminGuard } from './guards/admin.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // default route start home page
   { path: 'home', component: HomeComponent },
@@ -31,13 +32,20 @@ const routes: Routes = [
     canActivate: [AuthGuard, DoctorGuard],
   },
   {
-    path:'admin',
-    component:AdminDashboardComponent,
-    children:[
-      { path: 'appointmentReport', component: AppointmentReportComponent },
-      { path: 'invoiceReport', component: InvoiceListComponent },
+    path: 'admin',
+    component: AdminDashboardComponent,
+    // children:[
+    //   { path: 'appointmentReport', component: AppointmentReportComponent },
+    //   { path: 'invoiceReport', component: InvoiceListComponent },
 
-    ]
+    // ],
+    canActivate: [AuthGuard, AdminGuard],
+  },
+   {
+    path: 'admin/appointmentReport', component: AppointmentReportComponent
+  }
+  , {
+    path: 'admin/invoiceReport', component: InvoiceListComponent
   }
 ];
 
@@ -45,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

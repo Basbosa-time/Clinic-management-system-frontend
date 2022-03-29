@@ -11,6 +11,11 @@ import { ButtonModule } from 'primeng/button';
 export class MedicineCarouselComponent implements OnInit {
   medicine: object[] = [];
   responsiveOptions: object[];
+
+  defaultImgSrc = '../../../../assets/defaultMed.jpg';
+
+  src = 'http://localhost:8000/images/';
+
   constructor(private medicineService: MedicineService) {
     this.responsiveOptions = [
       {

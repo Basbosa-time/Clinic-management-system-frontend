@@ -1,5 +1,5 @@
 :host ::ng-deep .p-card	{
-  height: auto;
+  height: 100%;
   width: 60vw;
   box-sizing: border-box;
   background-color: white;  

@@ -7,7 +7,12 @@
         <div class="medicine-item">
             <div class="medicine-item-content">
                 <div class="mb-3">
-                    <img src="../../../../assets/defaultMed.jpg" [alt]="medicine.name" class="medicine-image" />
+                    <img style="width: 100px; height: 100px; border-radius: 25px;" [src]="src+medicine.image"
+                        *ngIf="medicine.image; else defaultImg" class="shadow-4" width="70" height="70" />
+                    <ng-template #defaultImg>
+                        <img style="width: 100px; height: 100px; border-radius: 25px;" [src]="defaultImgSrc"
+                            class="shadow-4" width="70" height="70" />
+                    </ng-template>
                 </div>
                 <div>
                     <h4 class="mb-1">{{medicine.name}}</h4>
