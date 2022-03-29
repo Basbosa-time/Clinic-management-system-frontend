@@ -16,26 +16,38 @@ export class InvoicesPerMonthReportComponent implements OnInit {
   ngOnInit() {
     let monthes:any
     let values:any
-    this.reportService.getInvoiceSummary().subscribe({
-      next: (report:any) => {
-        monthes=report?.monthes
-        values=report?.data
-        console.log(values, monthes, report);
-      },
-      error: (err) => console.log(err),
-      complete: () => {
-        this.basicData={
-          labels: monthes,
-          datasets: [
-            {
-              label: 'My First dataset',
-              backgroundColor: '#13C366',
-              data: values
-            }
-          ]
-        }
-      }
-    })
+    // this.reportService.getInvoiceSummary().subscribe({
+    //   next: (report:any) => {
+    //     monthes=report?.monthes
+    //     values=report?.data
+    //     console.log(values, monthes, report);
+    //   },
+    //   error: (err) => console.log(err),
+    //   complete: () => {
+    //     this.basicData={
+    //       labels: monthes,
+    //       datasets: [
+    //         {
+    //           label: 'My First dataset',
+    //           backgroundColor: '#13C366',
+    //           data: values
+    //         }
+    //       ]
+    //     }
+    //   }
+    // })
+
+    this.basicData={
+            labels: ['January', 'Febraury', 'March', 'April','May', 'June', 'July', 'Augast','Septamber','November','December' ],
+            datasets: [
+              {
+                label: 'Invoice',
+                backgroundColor: '#13C366',
+                data: [10,50,80]
+              }
+            ]
+          }
+
 
 
   }

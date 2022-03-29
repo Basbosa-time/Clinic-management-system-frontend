@@ -1,10 +1,18 @@
-<div style="width: 100%; height: 100%; background-color: rgba(214, 211, 209, 0.521);">
-  <div class="card-body row">
+  <!-- <div class="card-body row">
     <div>
       <h5 class="card-title">Primary card title</h5>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>  
     </div>
     <div>
     </div>
+  </div> -->
+<div class="card" style="box-shadow: 27px 24px 36px -3px rgba(0,0,0,0.1); border-radius: 10px; height:100%; border-width:0px" >
+  <img height="200px" style="object-fit: cover; border-radius: 10px 10px 0px 0px;" src={{imageSrc}} class="card-img-top" alt="...">
+  <div class="card-body row  justify-content-between">
+    <h5 class="card-text col-8">
+      {{title}} Report
+      <!-- Detailed Invoices -->
+    </h5>
+    <a [routerLink]="[goto]" class="btn btn-primary col-4 mx-3" style="width:100px; height: 40px">Report</a>
   </div>
 </div>

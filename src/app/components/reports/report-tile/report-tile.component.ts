@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-report-tile',
@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./report-tile.component.css']
 })
 export class ReportTileComponent implements OnInit {
-
+  @Input() title : string=""
+  @Input() imageSrc:string=""
+  @Input() goto:string=""
   constructor() { }
 
   ngOnInit(): void {
