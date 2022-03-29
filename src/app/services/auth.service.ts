@@ -5,23 +5,33 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() { }
+  constructor() {}
 
   isLoggedIn() {
     const helper = new JwtHelperService();
     let token = localStorage.getItem('userToken');
     const isExpired = helper.isTokenExpired(token?.toString());
-    return isExpired ? false : true;
+    return !isExpired;
   }
 
   isDoctor() {
     const helper = new JwtHelperService();
     let token = localStorage.getItem('userToken');
     const role = helper.decodeToken(token?.toString()).role;
-    return role == 'doctor' ? true : false;
+    return role == 'doctor';
   }
 
   isRecep() {
-    return !this.isDoctor();
+    const helper = new JwtHelperService();
+    let token = localStorage.getItem('userToken');
+    const role = helper.decodeToken(token?.toString()).role;
+    return role == 'recep';
+  }
+
+  isAdmin() {
+    const helper = new JwtHelperService();
+    let token = localStorage.getItem('userToken');
+    const role = helper.decodeToken(token?.toString()).role;
+    return role == 'admin';
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-home',
@@ -11,11 +12,11 @@ export class HomeComponent implements OnInit {
   displayModal: boolean = false;
   goToPage: string;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.goToPage = '';
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   showModalDialog() {
     this.displayModal = true;
@@ -28,9 +29,11 @@ export class HomeComponent implements OnInit {
         next: (data: any) => {
           localStorage.setItem('userToken', data.accessToken);
           if (data.data.role == 'recep') {
-            this.goToPage = '/recep/appointments';
+            this.router.navigate(['/recep/appointments']);
           } else if (data.data.role == 'doctor') {
-            this.goToPage = '/doctor';
+            this.router.navigate(['/doctor']);
+          } else if (data.data.role == 'admin') {
+            this.router.navigate(['/admin']);
           }
         },
         error: (err) => console.log(err),
