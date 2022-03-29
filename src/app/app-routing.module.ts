@@ -9,6 +9,7 @@ import { DoctorComponent } from './screens/doctor/doctor.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DoctorGuard } from './guards/doctor.guard';
 import { RecepGuard } from './guards/recep.guard';
+import { AdminDashboardComponent } from './screens/admin-dashboard/admin-dashboard.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // default route start home page
   { path: 'home', component: HomeComponent },
@@ -27,10 +28,14 @@ const routes: Routes = [
     component: DoctorComponent,
     canActivate: [AuthGuard, DoctorGuard],
   },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
